@@ -1,0 +1,32 @@
+import java.util.Random;
+
+public class World {
+    // variabler
+    private Random random = new Random();
+    private boolean downpour;
+    private int day;
+
+    // konstruktør - dag variabel angis når verden opprettes,vær genereres automatisk
+    public World(int day) {
+        this.day = day;
+        this.downpour = random.nextBoolean(); // automatisk vær-generering
+    }
+
+    //get/set?
+    public boolean getDownpour() {
+        return downpour;
+    }
+
+    // er det helg?
+    public boolean isWeekend(){
+        if(day % 7 == 0 || day % 7 == 6){
+            System.out.println("Det er helg");
+            return true; // det er helg
+        } else {
+            System.out.println("Det er ukedag");
+            return false; // det er ukedag
+        }
+    }
+
+
+}
