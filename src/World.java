@@ -17,6 +17,14 @@ public class World {
         return downpour;
     }
 
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
     // er det helg?
     public boolean isWeekend(){
         if(day % 7 == 0 || day % 7 == 6){

@@ -18,7 +18,7 @@ public class Controller {
             System.out.println("");
             System.out.println("What should we do?");
 
-            //delay / added space
+            //added space
             System.out.println("");
 
             System.out.println("1) Go to the park -30% battery");
@@ -35,16 +35,19 @@ public class Controller {
             switch (in) {
                 case "1":
                     robot.goToPark(world);
-                    //delay
+                    //additional text? in method
+                    //nb random downpour does not seem to work - true every time
                     break;
                 case "2":
                     robot.goToDisco(world);
                     break;
                 case "3":
                     robot.goToCatCafe(world);
+                    //change logic - more functional and interactive (reasons not to)
+                    // try adding a time aspect, can only go between 9-16 (10-17)
                     break;
                 case "4":
-                    robot.chargeBattery();
+                    robot.chargeBattery(world);
                     break;
                 case "5":
                     System.out.println("Bye bye, see you again!");
