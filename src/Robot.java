@@ -5,9 +5,8 @@ public class Robot {
     private int battery = 100;
 
     //konstruktør - nb batteri skal automatisk starte på 100
-    public Robot(String model, String name) {
+    public Robot(String model) {
         this.model = model;
-        this.name = name;
     }
 
     // get og set
@@ -29,7 +28,9 @@ public class Robot {
     }
 
     public void setBattery(int battery) {
-        this.battery = battery;
+        if (battery <= 100 && battery >= 0) { //logikk - så batteri % kun kan være 0-100 og ikke fx 130
+            this.battery = battery;
+        }
     }
 
     // ACTIVITY
