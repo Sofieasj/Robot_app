@@ -4,7 +4,7 @@ public class Robot {
     private String name;
     private int battery = 100;
 
-    //konstruktør - nb batteri skal automatisk starte på 100
+    // konstruktør - nb batteri skal automatisk starte på 100
     public Robot(String model) {
         this.model = model;
     }
@@ -28,7 +28,7 @@ public class Robot {
     }
 
     public void setBattery(int battery) {
-        if (battery <= 100 && battery >= 0) { //logikk - så batteri % kun kan være 0-100 og ikke fx 130
+        if (battery <= 100 && battery >= 0) { // logikk - så batteri % kun kan være 0-100
             this.battery = battery;
         }
     }
@@ -45,8 +45,7 @@ public class Robot {
             return false;
         }
         else {
-            //juster batteri dersom aktiviteten gjennomføres
-            this.setBattery(battery - 30);
+            this.setBattery(battery - 30); // juster batteri dersom aktiviteten gjennomføres
             System.out.println("Parken, here I come! Oppdatert batterinivå: " + battery);
             return true;
         }
@@ -61,8 +60,7 @@ public class Robot {
             System.out.println("Det er ikke nok batteri, jeg trenger minst 50%");
             return false;
         } else {
-            //juster batteri dersom aktiviteten gjennomføres
-            this.setBattery(battery - 40);
+            this.setBattery(battery - 40);  // juster batteri dersom aktiviteten gjennomføres
             System.out.println("Disco, here I come! Oppdatert batterinivå: " + battery);
             return true;
         }
@@ -74,8 +72,7 @@ public class Robot {
             System.out.println("Det er ukedag, ingen cafe i dag");
             return false;
         } else {
-            //juster batteri dersom aktiviteten gjennomføres - +
-            setBattery(battery + 30);
+            setBattery(battery + 30); // juster batteri dersom aktiviteten gjennomføres - +
             System.out.println("Klar til kattekafé! Oppdatert batterinivå: " + battery);
             return true;
         }
@@ -86,7 +83,7 @@ public class Robot {
         if (battery < 30) {
             System.out.println("Det er lite batteri, på tide å lade! Zzzz .. på vei til 100%");
             setBattery(100);
-            //update day +1 after each sleep
+            // update day +1 after each sleep
             world.setDay(world.getDay() +1);
             System.out.println("it's now day " + world.getDay());
             return true;

@@ -9,6 +9,5 @@ public class Main {
 
         controller.hello(robot);
         controller.play(robot,world);
-
     }
 }
