@@ -4,10 +4,9 @@ public class Robot {
     private String name;
     private int battery = 100;
 
-    //konstruktør - nb batteri skal automatisk starte på 100
-    public Robot(String model, String name) {
+    // konstruktør - nb batteri skal automatisk starte på 100
+    public Robot(String model) {
         this.model = model;
-        this.name = name;
     }
 
     // get og set
@@ -29,7 +28,9 @@ public class Robot {
     }
 
     public void setBattery(int battery) {
-        this.battery = battery;
+        if (battery <= 100 && battery >= 0) { // logikk - så batteri % kun kan være 0-100
+            this.battery = battery;
+        }
     }
 
     // ACTIVITY
@@ -39,14 +40,13 @@ public class Robot {
             System.out.println("Det regner, vi får finne på noe annet og dra i parken senere istedenfor.");
             return false;
         }
-        else if(this.battery < 40) {
+        else if(battery < 40) {
             System.out.println("Det er ikke nok batteri til å gå til parken. På tide å lade :)");
             return false;
         }
         else {
-            //juster batteri dersom aktiviteten gjennomføres
-            this.setBattery(this.battery - 30);
-            System.out.println("Parken, here I come! Oppdatert batterinivå: " + this.battery);
+            this.setBattery(battery - 30); // juster batteri dersom aktiviteten gjennomføres
+            System.out.println("Parken, here I come! Oppdatert batterinivå: " + battery);
             return true;
         }
     }
@@ -56,13 +56,12 @@ public class Robot {
         if(!world.isWeekend()) {
             System.out.println("Det er ukedag, ingen disco i dag");
             return false;
-        } else if (this.battery < 50){
+        } else if (battery < 50){
             System.out.println("Det er ikke nok batteri, jeg trenger minst 50%");
             return false;
         } else {
-            //juster batteri dersom aktiviteten gjennomføres
-            this.setBattery(this.battery - 40);
-            System.out.println("Disco, here I come! Oppdatert batterinivå: " + this.battery);
+            this.setBattery(battery - 40);  // juster batteri dersom aktiviteten gjennomføres
+            System.out.println("Disco, here I come! Oppdatert batterinivå: " + battery);
             return true;
         }
     }
@@ -73,18 +72,20 @@ public class Robot {
             System.out.println("Det er ukedag, ingen cafe i dag");
             return false;
         } else {
-            //juster batteri dersom aktiviteten gjennomføres - +
-            this.setBattery(this.battery + 30);
-            System.out.println("Klar til kattekafé! Oppdatert batterinivå: " + this.battery);
+            setBattery(battery + 30); // juster batteri dersom aktiviteten gjennomføres - +
+            System.out.println("Klar til kattekafé! Oppdatert batterinivå: " + battery);
             return true;
         }
     }
 
     // lade - batteri max 30%
-    public boolean chargeBattery() {
+    public boolean chargeBattery(World world) {
         if (battery < 30) {
             System.out.println("Det er lite batteri, på tide å lade! Zzzz .. på vei til 100%");
-            this.setBattery(100);
+            setBattery(100);
+            // update day +1 after each sleep
+            world.setDay(world.getDay() +1);
+            System.out.println("it's now day " + world.getDay());
             return true;
         } else {
             System.out.println("Vi trenger ikke lade enda. Batteri nivå: " + this.battery);
